@@ -1,13 +1,17 @@
 # syntax=docker/dockerfile:1.9
-
-## 基础阶段
 FROM python:3.12-slim AS base
 
 # 更新包列表并安装必要的工具
 RUN apt-get update && apt-get install -y \
     bash \
     build-essential \
+    cmake \
+    libxml2-dev \
+    libz-dev \
     && rm -rf /var/lib/apt/lists/*
+
+# 升级 pip 并安装最新的 setuptools 和 setuptools_scm
+RUN pip install --upgrade pip setuptools setuptools_scm
 
 # 创建非 root 用户
 RUN useradd -m appuser
