@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # 升级 pip 并安装最新的 setuptools 和 setuptools_scm
-RUN pip install --upgrade pip setuptools setuptools_scm
+RUN pip install --upgrade pip setuptools setuptools_scm --verbose
 
 # 创建非 root 用户
 RUN useradd -m appuser
@@ -31,12 +31,12 @@ ENV HOST=0.0.0.0
 RUN pip install --no-cache-dir \
     SCCAF \
     tqdm \
-    matplotlib && \
+    matplotlib --verbose && \
     pip cache purge
 
 # 安装指定版本的 marimo
 ARG marimo_version=0.9.13
-RUN pip install --no-cache-dir marimo==${marimo_version}
+RUN pip install --no-cache-dir marimo==${marimo_version} --verbose
 
 # 创建必要的目录并赋予权限
 RUN mkdir -p /app/data && chown -R appuser:appuser /app
@@ -58,7 +58,7 @@ FROM base AS data
 RUN pip install --no-cache-dir \
     pandas \
     numpy \
-    altair && \
+    altair --verbose && \
     pip cache purge
 
 CMD ["marimo", "edit", "--no-token", "-p", "$PORT", "--host", "$HOST"]
@@ -67,7 +67,7 @@ CMD ["marimo", "edit", "--no-token", "-p", "$PORT", "--host", "$HOST"]
 FROM data AS sql
 
 # 安装 marimo 的 sql 扩展
-RUN pip install --no-cache-dir marimo[sql] && \
+RUN pip install --no-cache-dir marimo[sql] --verbose && \
     pip cache purge
 
 CMD ["marimo", "edit", "--no-token", "-p", "$PORT", "--host", "$HOST"]
