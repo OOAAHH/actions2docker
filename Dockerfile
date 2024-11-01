@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # 升级 pip 并安装最新的 setuptools 和 setuptools_scm
-RUN pip install --upgrade pip setuptools setuptools_scm --verbose
+RUN pip install --upgrade pip setuptools setuptools_scm
 
 # 创建非 root 用户
 RUN useradd -m appuser
