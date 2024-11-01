@@ -28,15 +28,15 @@ ENV PORT=8080
 ENV HOST=0.0.0.0
 
 # 安装公共依赖
-RUN pip install --no-cache-dir \
+RUN pip install --no-cache-dir --verbose  \
     SCCAF \
     tqdm \
-    matplotlib --verbose && \
+    matplotlib && \
     pip cache purge
 
 # 安装指定版本的 marimo
 ARG marimo_version=0.9.13
-RUN pip install --no-cache-dir marimo==${marimo_version} --verbose
+RUN pip install --verbose --no-cache-dir marimo==${marimo_version}
 
 # 创建必要的目录并赋予权限
 RUN mkdir -p /app/data && chown -R appuser:appuser /app
@@ -55,10 +55,10 @@ CMD ["marimo", "edit", "--no-token", "-p", "$PORT", "--host", "$HOST"]
 FROM base AS data
 
 # 安装数据处理相关的依赖
-RUN pip install --no-cache-dir \
+RUN pip install --no-cache-dir --verbose  \
     pandas \
     numpy \
-    altair --verbose && \
+    altair && \
     pip cache purge
 
 CMD ["marimo", "edit", "--no-token", "-p", "$PORT", "--host", "$HOST"]
@@ -67,7 +67,7 @@ CMD ["marimo", "edit", "--no-token", "-p", "$PORT", "--host", "$HOST"]
 FROM data AS sql
 
 # 安装 marimo 的 sql 扩展
-RUN pip install --no-cache-dir marimo[sql] --verbose && \
+RUN pip install --verbos --no-cache-dir marimo[sql] && \
     pip cache purge
 
 CMD ["marimo", "edit", "--no-token", "-p", "$PORT", "--host", "$HOST"]
