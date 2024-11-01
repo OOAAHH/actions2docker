@@ -10,9 +10,6 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install SCCAF pandas tqdm matplotlib
-RUN pip cache purge
-
 WORKDIR /app
 
 ARG marimo_version=0.9.13
@@ -40,5 +37,7 @@ CMD marimo edit --no-token -p $PORT --host $HOST
 
 # -sql entry point, extends -data
 FROM data AS sql
+RUN pip install SCCAF pandas tqdm matplotlib
 RUN pip install --no-cache-dir marimo[sql]
+RUN pip cache purge
 CMD marimo edit --no-token -p $PORT --host $HOST
