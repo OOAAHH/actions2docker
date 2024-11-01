@@ -22,6 +22,5 @@ EXPOSE 2818
 WORKDIR /docs
 
 # 设置容器启动时运行的命令
-# CMD ["marimo", "edit"]
-# 设置容器启动时运行的命令，指定端口为 2818
-CMD ["marimo", "edit", "--port", "2818"]
+CMD ["marimo", "edit"]
+
