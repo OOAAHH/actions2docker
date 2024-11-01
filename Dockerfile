@@ -1,7 +1,7 @@
 # 使用精简版的 Python 3.11 基础镜像
 FROM python:3.11-slim
 
-# 更新包列表并安装 bash 和构建工具
+# 更新包列表并安装 bash 和构建工具2
 RUN apt-get update && apt-get install -y \
     bash \
     build-essential \
