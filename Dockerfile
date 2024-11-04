@@ -70,4 +70,4 @@ FROM data AS sql
 RUN pip install --verbos --no-cache-dir marimo[sql] && \
     pip cache purge
 
-CMD ["marimo", "edit", "--no-token", "-p", "8080", "--host", "8080"]
+CMD ["marimo", "edit", "--no-token", "-p", "8080", "--host", "0.0.0.0"]
