@@ -62,7 +62,8 @@ USER root
 # 安装数据处理相关的依赖
 RUN pip install --no-cache-dir \
     scgen \
-    rm -rf /opt/venv/cache
+    
+RUN rm -rf /opt/venv/cache
 
 # 切换回 appuser 用户
 USER appuser
