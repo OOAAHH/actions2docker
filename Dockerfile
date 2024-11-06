@@ -1,11 +1,7 @@
 # syntax=docker/dockerfile:1.9
-FROM node:lts-bookworm AS base
-
-# 安装 Python 3 和必要的工具
+FROM python:3.12-slim AS base
+# 安装必要的工具
 RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    python3-venv \
     bash \
     build-essential \
     cmake \
@@ -31,13 +27,6 @@ RUN pip install --upgrade pip setuptools setuptools_scm
 
 # 切换回 root 用户，安装公共依赖
 USER root
-
-# 安装公共依赖
-RUN pip install --no-cache-dir \
-    SCCAF \
-    tqdm \
-    matplotlib && \
-    rm -rf /opt/venv/cache
 
 # 安装指定版本的 marimo
 ARG marimo_version=0.9.13
@@ -72,10 +61,7 @@ USER root
 
 # 安装数据处理相关的依赖
 RUN pip install --no-cache-dir \
-    pandas \
-    numpy \
     scgen \
-    altair && \
     rm -rf /opt/venv/cache
 
 # 切换回 appuser 用户
