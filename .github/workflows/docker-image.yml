@@ -34,7 +34,7 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ooaahhdocker/marimo:latest
+          tags: ooaahhdocker/marimoscgen:latest
           cache-from: type=registry,ref=ooaahhdocker/marimoscgen:latest
           cache-to: type=inline
           
