@@ -74,6 +74,7 @@ USER root
 RUN pip install --no-cache-dir \
     pandas \
     numpy \
+    scgen \
     altair && \
     rm -rf /opt/venv/cache
 
