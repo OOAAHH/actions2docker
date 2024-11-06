@@ -35,7 +35,7 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ooaahhdocker/marimo:latest
-          cache-from: type=registry,ref=ooaahhdocker/marimo_scgen:latest
+          cache-from: type=registry,ref=ooaahhdocker/marimoscgen:latest
           cache-to: type=inline
           
       - name: Logout from Docker Hub
