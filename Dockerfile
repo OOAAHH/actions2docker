@@ -29,8 +29,8 @@ RUN pip install --upgrade pip setuptools setuptools_scm
 USER root
 
 # 安装指定版本的 marimo
-ARG marimo_version=0.9.13
-RUN pip install --no-cache-dir marimo==${marimo_version}
+# ARG marimo_version=0.9.13
+RUN pip install --no-cache-dir marimo
 
 # 创建工作目录并赋予权限
 RUN mkdir /app && chown appuser:appuser /app
