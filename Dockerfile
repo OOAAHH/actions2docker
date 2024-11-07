@@ -63,6 +63,7 @@ USER root
 RUN pip install --no-cache-dir scvi-tools==0.20.0
 RUN pip install --no-cache-dir -U anndata==0.10.8 requests
 RUN pip install --no-cache-dir scgen 
+RUN sed -i 's/^from scvi\._compat import Literal/# from scvi._compat import Literal\nfrom typing import Literal/' /opt/venv/lib/python3.9/site-packages/scgen/_scgenvae.py
 RUN rm -rf /opt/venv/cache
 
 # 切换回 appuser 用户
