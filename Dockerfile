@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.9
-FROM python:3.9 AS base
+FROM python:3.8-slim AS base
 # 安装必要的工具
 RUN apt-get update && apt-get install -y \
     bash \
@@ -60,7 +60,7 @@ FROM base AS data
 USER root
 
 # 安装数据处理相关的依赖
-RUN pip install --no-cache-dir scvi-tools==1.0.0
+RUN pip install --no-cache-dir scvi-tools==0.20.0
 RUN pip install --no-cache-dir -U anndata==0.10.8
 RUN pip install --no-cache-dir scgen 
 RUN rm -rf /opt/venv/cache
