@@ -61,7 +61,7 @@ USER root
 
 # 安装数据处理相关的依赖
 RUN pip install --no-cache-dir scvi-tools==0.20.0
-RUN pip install --no-cache-dir -U anndata==0.10.8
+RUN pip install --no-cache-dir -U anndata==0.10.8 requests
 RUN pip install --no-cache-dir scgen 
 RUN rm -rf /opt/venv/cache
 
