@@ -247,8 +247,8 @@ FROM base AS data
 # 切换到 root 用户安装依赖
 USER root
 
-# 安装数据处理相关的依赖
-RUN pip install --no-cache-dir scvi-tools==0.20.0
+# 安装数据处理相关的依赖 torch lighting1.6
+RUN pip install --no-cache-dir scvi-tools==0.18.0
 RUN pip install --no-cache-dir -U anndata==0.10.8
 RUN pip install --no-cache-dir scgen 
 RUN rm -rf /opt/venv/cache
