@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1.9
-FROM python:3.8-slim AS base
+FROM python:3.9-slim AS base
 # 安装必要的工具
 RUN apt-get update && apt-get install -y \
     bash \
