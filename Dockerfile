@@ -23,7 +23,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 USER appuser
 
 # 升级 pip 并安装最新的 setuptools 和 setuptools_scm
-RUN pip install --upgrade pip setuptools setuptools_scm
+RUN pip install --upgrade pip==24.0 setuptools setuptools_scm
 
 # 切换回 root 用户，安装公共依赖
 USER root
