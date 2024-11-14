@@ -29,8 +29,8 @@ USER root
 
 # 安装指定版本的 marimo
 # ARG marimo_version=0.9.13
-RUN pip install --no-cache-dir torchmetrics==0.11.4
-RUN pip install --no-cache-dir scvi-tools==0.18.0
+# RUN pip install --no-cache-dir torchmetrics==0.11.4
+# RUN pip install --no-cache-dir scvi-tools==0.18.0
 RUN pip install --no-cache-dir marimo
 
 # 创建工作目录并赋予权限
