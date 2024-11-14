@@ -1,8 +1,7 @@
 # syntax=docker/dockerfile:1.9
-FROM python:3.9-slim AS base
+FROM python:3.7 AS base
 # 安装必要的工具
 RUN apt-get update && apt-get install -y \
-    bash \
     build-essential \
     cmake \
     libxml2-dev \
@@ -23,7 +22,7 @@ ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 USER appuser
 
 # 升级 pip 并安装最新的 setuptools 和 setuptools_scm
-RUN pip install --upgrade pip==24.0 setuptools setuptools_scm
+RUN pip install --upgrade setuptools setuptools_scm
 
 # 切换回 root 用户，安装公共依赖
 USER root
@@ -63,9 +62,10 @@ USER root
 
 # 安装数据处理相关的依赖
 
-RUN pip install --no-cache-dir -U anndata==0.10.8 requests
+#RUN pip install --no-cache-dir -U anndata==0.10.8 requests
 RUN pip install --no-cache-dir scgen 
-RUN sed -i 's/^from scvi\._compat import Literal/# from scvi._compat import Literal\nfrom typing import Literal/' /opt/venv/lib/python3.9/site-packages/scgen/_scgenvae.py
+RUN pip install scgen[tutorials]
+#RUN sed -i 's/^from scvi\._compat import Literal/# from scvi._compat import Literal\nfrom typing import Literal/' /opt/venv/lib/python3.9/site-packages/scgen/_scgenvae.py
 RUN rm -rf /opt/venv/cache
 
 # 切换回 appuser 用户
